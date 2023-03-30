@@ -42,6 +42,7 @@
 
 #include "CommandQueue.h"
 #include "MemoryController.h"
+#include "SystemConfiguration.h"
 #include <assert.h>
 
 using namespace DRAMSim;
@@ -151,8 +152,8 @@ void CommandQueue::enqueue(BusPacket *newBusPacket)
 			ERROR("						Need to call .hasRoomFor(int numberToEnqueue, unsigned rank, unsigned bank) first");
 			exit(0);
 		}
-	}
-	else
+	} else if (queuingStructure==SBIOSSchedule) {
+    } else
 	{
 		ERROR("== Error - Unknown queuing structure");
 		exit(0);
